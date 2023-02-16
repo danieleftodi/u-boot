@@ -328,6 +328,7 @@ extern const efi_guid_t efi_esrt_guid;
 extern const efi_guid_t smbios_guid;
 /*GUID of console */
 extern const efi_guid_t efi_guid_text_input_protocol;
+extern const efi_guid_t efi_guid_text_output_protocol;
 
 extern char __efi_runtime_start[], __efi_runtime_stop[];
 extern char __efi_runtime_rel_start[], __efi_runtime_rel_stop[];
@@ -1135,5 +1136,12 @@ efi_status_t efi_console_get_u16_string
 		 int row, int col);
 
 efi_status_t efi_disk_get_device_name(const efi_handle_t handle, char *buf, int size);
+
+/**
+ * efi_add_known_memory() - add memory banks to EFI memory map
+ *
+ * This weak function may be overridden for specific architectures.
+ */
+void efi_add_known_memory(void);
 
 #endif /* _EFI_LOADER_H */

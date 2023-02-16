@@ -14,8 +14,8 @@ config EFI_LOADER
 	depends on !EFI_APP
 	default y if !ARM || SYS_CPU = armv7 || SYS_CPU = armv8
 	select CHARSET
+	# We need to send DM events, dynamically, in the EFI block driver
 	select DM_EVENT
-	select EVENT
 	select EVENT_DYNAMIC
 	select LIB_UUID
 	imply PARTITION_UUIDS
@@ -123,6 +123,15 @@ config EFI_SET_TIME
 	help
 	  Provide the SetTime() runtime service at boottime. This service
 	  can be used by an EFI application to adjust the real time clock.
+
+config EFI_SCROLL_ON_CLEAR_SCREEN
+	bool "Avoid overwriting previous output on clear screen"
+	help
+	  Instead of erasing the screen content when the console screen should
+	  be cleared, emit blank new lines so that previous output is scrolled
+	  out of sight rather than overwritten. On serial consoles this allows
+	  to capture complete boot logs (except for interactive menus etc.)
+	  and can ease debugging related issues.
 
 config EFI_HAVE_CAPSULE_SUPPORT
 	bool

@@ -11,6 +11,7 @@
 #include <efi_loader.h>
 #include <efi_variable.h>
 #include <log.h>
+#include <asm-generic/unaligned.h>
 
 #define OBJ_LIST_NOT_INITIALIZED 1
 
@@ -128,7 +129,7 @@ static efi_status_t efi_init_capsule(void)
 {
 	efi_status_t ret = EFI_SUCCESS;
 
-	if (IS_ENABLED(CONFIG_EFI_HAVE_CAPSULE_UPDATE)) {
+	if (IS_ENABLED(CONFIG_EFI_HAVE_CAPSULE_SUPPORT)) {
 		ret = efi_set_variable_int(u"CapsuleMax",
 					   &efi_guid_capsule_report,
 					   EFI_VARIABLE_READ_ONLY |
