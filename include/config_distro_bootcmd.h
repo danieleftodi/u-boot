@@ -469,7 +469,7 @@
 	BOOTENV_SHARED_VIRTIO \
 	BOOTENV_SHARED_EXTENSION \
 	"boot_prefixes=/ /boot/\0" \
-	"boot_scripts=boot.scr.uimg boot.scr\0" \
+	"boot_scripts=boot_rpi3b.scr boot.scr boot.scr.uimg\0" \
 	"boot_script_dhcp=boot.scr.uimg\0" \
 	BOOTENV_BOOT_TARGETS \
 	\
